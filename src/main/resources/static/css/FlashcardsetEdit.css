@@ -1,0 +1,46 @@
+
+body {
+    padding: 10px;
+}
+
+
+.flashcard {
+    margin-bottom: 8px;
+}
+
+.flashcard-front, .flashcard-back {
+    display: inline-block;
+    width: 300px;
+    height: 100px;
+    color: #CEE5F2;
+    font-size: 30px;
+    padding: 10px;
+    margin: 0px;
+}
+
+.flashcard-front {
+    background-color: #637081;
+}
+
+.flashcard-back {
+    background-color: #536B78;
+}
+
+#add-flashcard {
+    margin-bottom: 10px;
+    cursor: pointer !important;
+}
+
+#add-flashcard .flashcard-front, #add-flashcard .flashcard-back {
+    opacity: 0.5;
+    cursor: pointer !important;
+}
+
+#add-flashcard:hover #add-flashcard-plus {
+
+}
+
+#add-flashcard:hover .flashcard-front, #add-flashcard:hover .flashcard-back {
+    opacity: 1;
+    display: inline-block;
+}

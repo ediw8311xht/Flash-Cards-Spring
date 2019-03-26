@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Edit Flashcard</title>
+        <link rel="stylesheet" type="text/css" href="/css/FlashcardsetEdit.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        </script>
+
+        <script src="/js/FlashcardsetEdit.js"></script>
+    </head>
+    <body>
+        <div id="topbar">
+            <h1 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
+            <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
+        </div>
+        <div id="flashcardset">
+            <div id="add-flashcard">
+                <textarea class="flashcard-front">+</textarea>
+                <textarea class="flashcard-back">+</textarea>
+            </div>
+        </div>
+    </body>
+</html>
