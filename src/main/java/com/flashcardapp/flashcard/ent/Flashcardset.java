@@ -1,6 +1,7 @@
 package com.flashcardapp.flashcard.ent;
 
 
+import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 
@@ -59,9 +60,15 @@ public class Flashcardset {
     //and front and back of flashcards seperated by a backflash (\)
     //i.e. "2 + 2\4,9+9\18,22999*111000\who knows"
     public String getFlashcardsStr() {
+        System.out.println("SIZE SIZE SIZE");
+        System.out.println(this.flashcards.size());
         if (this.flashcards.size() <= 0) {
             return "";
         }
+        else if (this.flashcards.size() == 1) {
+            return this.flashcards.get(0);
+        }
+
         else {
             return String.join(",", this.flashcards);
         }
@@ -81,8 +88,13 @@ public class Flashcardset {
     }
 
     public void setFlashcardsFromStr(String flashset) {
-        //Stupid convoluted mess is because split returns Array and needs to be ArrayList.
-        this.flashcards = new ArrayList<String>(Arrays.asList(flashset.split(",")));
+
+        //If statement ensures that arraylist does not add an empty value if String is empty.
+        if (!flashset.equals("")) {
+            //Stupid convoluted line mess is because split returns Array and needs to be ArrayList.
+            this.flashcards = new ArrayList<String>(Arrays.asList(flashset.split(",")));
+        }
+
     }
 
     public void addToFlashcards(String flashcard) {

@@ -20,7 +20,7 @@ function write_flashcards(flashcards) {
     console.log(fbc);
     console.log("END FBC");
     for (let i = 0; i < fbc.length; i++) {
-        let c = fbc.split("\\");
+        let c = fbc[i].split("\\");
         insert_flashcard(c[0], c[1]);
     }
 }
