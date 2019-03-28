@@ -31,11 +31,12 @@ $(document).ready(function(){
 
     $.get("/flashcard/ajax/Flashcardset?id=" + information["id"],
         function(data) {
-            console.log("SUCCESFUL");
+            console.log("SUCCESFULL");
             console.log(data);
             console.log(data["id"]);
             console.log(data["name"]);
             console.log(data["flashcards"]);
+            console.log("ttt");
             flset = data["flashcards"].split(",");
             for (let i = 0; i < flset.length; i++) {
                 flset[i] = flset[i].split("\\");

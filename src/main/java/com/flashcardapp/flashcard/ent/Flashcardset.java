@@ -63,7 +63,7 @@ public class Flashcardset {
             return "";
         }
         else {
-            return String.join("\\", this.flashcards);
+            return String.join(",", this.flashcards);
         }
     }
 

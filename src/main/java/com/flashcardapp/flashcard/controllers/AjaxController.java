@@ -29,13 +29,20 @@ public class AjaxController {
     public @ResponseBody Flashcardset updateCardsFlashcardset(@RequestParam("id") String id, @RequestParam("flashcards") String flashcards) {
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         fcs.setFlashcardsFromStr(flashcards);
+        this.flashcardRepo.updateFlashcardset(fcs);
         return fcs;
     }
 
     @RequestMapping(value = "/Flashcardset/addCard", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody Flashcardset addCardFlashcardset(@RequestParam("id") String id, @RequestParam("front") String frontF, @RequestParam("back") String backF) {
+        System.out.println(id);
+        System.out.println(frontF);
+        System.out.println(backF);
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         fcs.addToFlashcards(frontF + "\\" + backF);
+        this.flashcardRepo.updateFlashcardset(fcs);
+        System.out.println("flashcards");
+        System.out.println(fcs.getFlashcardsStr());
         return fcs;
     }
 

@@ -22,8 +22,13 @@ public class FlashcardsetController {
         this.flashcardRepo = flashcardRepo;
     }
 
-    @GetMapping("/makeNewFlashcardset")
+    @GetMapping("")
     public String FlashcardsetHome() {
+        return "FlashcardHome";
+    }
+
+    @GetMapping("/makeNewFlashcardset")
+    public String FlashcardsetNew() {
         return "MakeNewFlashcardset";
     }
 

@@ -26,7 +26,7 @@ public class FlashcardRepository {
         System.out.println("HERE");
         do {
             System.out.println("nHERE");
-            for (int i = 0; i < 14; i++) {
+            for (int i = 0; i < 15; i++) {
                 new_id += valid_char[(int) Math.floor(Math.random() * valid_char.length)];
             }
         } while (this.findOne(new_id) != null);
@@ -55,7 +55,6 @@ public class FlashcardRepository {
 
     public Flashcardset findOne(String id) {
         try {
-            System.out.println(id);
             return jdbc.queryForObject("SELECT id, name, flashcards FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
         } catch (EmptyResultDataAccessException e) {
             System.out.println("No result found for that query.");
@@ -66,7 +65,6 @@ public class FlashcardRepository {
 
     private Flashcardset mapRowToFlashcardset(ResultSet rs, int rowNum) throws SQLException {
         if (!rs.isBeforeFirst()) {
-            System.out.println("HERE");
             return new Flashcardset(rs.getString("id"), rs.getString("name"), rs.getString("flashcards"));
         }
         else {

@@ -1,5 +1,4 @@
 
-var flset = [];
 
 
 var new_flashcard = "<div class='flashcard'>\
@@ -14,32 +13,39 @@ function insert_flashcard(front, back) {
     $(tcg).insertBefore("#add-flashcard");
 }
 
+function write_flashcards(flashcards) {
+    $(".flashcard").remove();
+    let fbc = flashcards.split(",");
+    console.log("START FBC");
+    console.log(fbc);
+    console.log("END FBC");
+    for (let i = 0; i < fbc.length; i++) {
+        let c = fbc.split("\\");
+        insert_flashcard(c[0], c[1]);
+    }
+}
+
 var information = {"id": ""};
 
 $(document).ready(function() {
 
     information["id"] = $("#flashcardsetId").text().substring(4);
 
+    console.log(information["id"]);
+
     $.get("/flashcard/ajax/Flashcardset?id=" + information["id"],
         function(data) {
-            console.log("SUCCESFUL");
-            console.log("GET");
-            console.log(data["id"]);
-            console.log(data["name"]);
+            console.log("SUCCESSFUL");
+            console.log("data: ");
+            console.log(data);
+            console.log("flashcards");
             console.log(data["flashcards"]);
-            console.log(data["flashcards"][0]);
-            if (data["flashcards"].length >= 2) {
-                flset = data["flashcards"][0].split(",");
-                for (let i = 0; i < flset.length; i++) {
-                    flset[i] = flset[i].split("\\");
-                    insert_flashcard(flset[i][0], flset[i][1]);
-                }
-            }
+            console.log("END");
+            write_flashcards(data["flashcardsStr"]);
         }
     );
 
     $("#add-flashcard").on("click", function(){
-        flset.push(["asdfsa", "bigboy"]);
         let abcd = {"id": information["id"],
                     "front": "asdfsa",
                     "back" : "bigboy"};
@@ -48,7 +54,10 @@ $(document).ready(function() {
         $.post("/flashcard/ajax/Flashcardset/addCard",
                {"id": information["id"], "front": "asdfsa", "back" : "bigboy"},
                function(data) {
+                   console.log("POST START");
                    console.log(data);
+                   console.log("POST END");
+                   write_flashcards(data["flashcardsStr"]);
                }
         );
     });
