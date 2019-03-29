@@ -15,6 +15,9 @@ function insert_flashcard(front, back) {
 
 function write_flashcards(flashcards) {
     $(".flashcard").remove();
+    if (flashcards == "") {
+        return;
+    }
     let fbc = flashcards.split(",");
     console.log("START FBC");
     console.log(fbc);
