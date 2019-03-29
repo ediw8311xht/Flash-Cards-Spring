@@ -31,21 +31,18 @@ $(document).ready(function(){
 
     $.get("/flashcard/ajax/Flashcardset?id=" + information["id"],
         function(data) {
-            console.log("SUCCESFULL");
             console.log(data);
-            console.log(data["id"]);
-            console.log(data["name"]);
-            console.log(data["flashcards"]);
-            console.log("ttt");
-            flset = data["flashcards"].split(",");
+            console.log(data["flashcardsStr"]);
+            flset = data["flashcardsStr"].split(",");
             for (let i = 0; i < flset.length; i++) {
                 flset[i] = flset[i].split("\\");
             }
+            $("#flashcard-front").text(flset[flnum % flset.length][0]);
+            $("#flashcard-back").text(flset[flnum % flset.length][1]);
+            $("#flashcard").on("click", flip_flashcard);
+            $("#flashcard-next").on("click", next_flashcard);
         }
     );
 
-    $("#flashcard-front").text(flset[flnum % flset.length][0]);
-    $("#flashcard-back").text(flset[flnum % flset.length][1]);
-    $("#flashcard").on("click", flip_flashcard);
-    $("#flashcard-next").on("click", next_flashcard);
+
 });
