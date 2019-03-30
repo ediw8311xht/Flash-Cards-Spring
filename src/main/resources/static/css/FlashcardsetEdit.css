@@ -1,9 +1,17 @@
 
+
+
 body {
-    padding: 10px;
+    background-color: rgba(30,41,77);
+    margin: 0px;
+    padding: 0px;
     text-align: center;
 }
 
+
+#flashcardset {
+    margin-top: 40px;
+}
 
 .flashcard {
     margin-bottom: 8px;
@@ -13,19 +21,23 @@ body {
     display: inline-block;
     width: 300px;
     height: 100px;
-    color: #CEE5F2;
-    font-size: 30px;
+    color: #9fa8dd;
+    text-shadow: 3px 3px #570001;
+    font-size: 40px;
     padding: 10px;
     margin: 0px;
     resize: none;
+    font-family: 'Baloo Chettan', cursive;
 }
 
 .flashcard-front {
-    background-color: #637081;
+    border: none;
+    background-color: #571A3A;
 }
 
 .flashcard-back {
-    background-color: #536B78;
+    border: none;
+    background-color: #121619;
 }
 
 #add-flashcard {
@@ -45,13 +57,4 @@ body {
 #add-flashcard:hover .flashcard-front, #add-flashcard:hover .flashcard-back {
     opacity: 1;
     display: inline-block;
-}
-
-#save-button {
-    height: 40px;
-    width: 40px;
-    background-color: black;
-    color: white;
-    border: none;
-    cursor: pointer;
 }

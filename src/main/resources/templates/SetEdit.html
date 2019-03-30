@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8">
         <title>Edit Flashcard</title>
@@ -12,19 +13,25 @@
 
         <script src="/js/FlashcardsetEdit.js"></script>
     </head>
+
     <body>
+
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
+
         <div id="topbar">
             <h1 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
             <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
         </div>
+        
         <div id="flashcardset"><!--To prevent space between inline-blocks.
         --><div id="add-flashcard"><!--
-            --><textarea class="flashcard-front">+</textarea><!--
-            --><textarea class="flashcard-back">+</textarea><!--
+            --><textarea  class="flashcard-front" spellcheck="false">+</textarea><!--
+            --><textarea  class="flashcard-back"  spellcheck="false">+</textarea><!--
         --></div><!--
      --></div>
 
         <button type="button" id="save-button">Save</button>
+
     </body>
+
 </html>

@@ -1,11 +1,11 @@
 
 
 
-var new_flashcard = "<div class='flashcard'><textarea class='flashcard-front'></textarea><textarea class='flashcard-back'></textarea></div>";
+var new_flashcard = "<div class='flashcard'><textarea class='flashcard-front' spellcheck='false'></textarea><textarea class='flashcard-back' spellcheck='false'></textarea></div>";
 
 function insert_flashcard(front, back) {
-    let tcg = "<div class='flashcard'><textarea class='flashcard-front'>"
-              + front + "</textarea><textarea class='flashcard-back'>"
+    let tcg = "<div class='flashcard'><textarea class='flashcard-front' spellcheck='false'>"
+              + front + "</textarea><textarea class='flashcard-back' spellcheck='false'>"
               + back + "</textarea></div>";
     $(tcg).insertBefore("#add-flashcard");
 }

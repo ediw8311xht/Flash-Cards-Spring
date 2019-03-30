@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8">
         <title>Flashcards</title>
     </head>
     <body>
-        <form action="/flashcard/Flashcardset" method="get">
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
+        <form action="/flashcard/Flashcardset/edit" method="get">
             <p>ID of your flashcard set:</p>
             <input type="text" name="id">
             <input type="submit" name="Get flashcardset" value="submit">

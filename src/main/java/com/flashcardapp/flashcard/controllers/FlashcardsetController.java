@@ -22,16 +22,6 @@ public class FlashcardsetController {
         this.flashcardRepo = flashcardRepo;
     }
 
-    @GetMapping("")
-    public String FlashcardsetHome() {
-        return "FlashcardHome";
-    }
-
-    @GetMapping("/makeNewFlashcardset")
-    public String FlashcardsetNew() {
-        return "MakeNewFlashcardset";
-    }
-
     @PostMapping("/makeNewFlashcardset")
     public ModelAndView makeFlashcardset(@RequestParam("name") String name) {
         String id = this.flashcardRepo.makeRandomId();
@@ -40,20 +30,15 @@ public class FlashcardsetController {
         return new ModelAndView("redirect:/flashcard/Flashcardset?id=" + id);
     }
 
-    @GetMapping("/getFlashcardset")
-    public String getFlashcardset() {
-        return "GetFlashcardset";
-    }
-
     @GetMapping("/Flashcardset")
     public String getFlashcardset(@RequestParam("id") String id, Model model) {
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         if (fcs != null) {
             model.addAttribute("flashcardset", fcs);
-            return "Flashcardset";
+            return "Set";
         }
         else {
-            return "FlashcardsetNotFound";
+            return "SetNotFound";
         }
     }
 
@@ -62,10 +47,10 @@ public class FlashcardsetController {
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         if (fcs != null) {
             model.addAttribute("flashcardset", fcs);
-            return "FlashcardsetEdit";
+            return "SetEdit";
         }
         else {
-            return "FlashcardsetNotFound";
+            return "SetNotFound";
         }
     }
 
