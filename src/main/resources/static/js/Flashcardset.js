@@ -35,6 +35,8 @@ $(document).ready(function(){
             console.log(data["flashcardsStr"]);
             flset = data["flashcardsStr"].split(",");
             for (let i = 0; i < flset.length; i++) {
+                console.log(flset[i].split("\\"));
+                console.log(flset[i]);
                 flset[i] = flset[i].split("\\");
             }
             $("#flashcard-front").text(flset[flnum % flset.length][0]);

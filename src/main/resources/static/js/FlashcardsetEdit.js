@@ -1,13 +1,10 @@
 
 
 
-var new_flashcard = "<div class='flashcard'>\
-                        <textarea class='flashcard-front'></textarea>\
-                        <textarea class='flashcard-back'></textarea>\
-                     </div>";
+var new_flashcard = "<div class='flashcard'><textarea class='flashcard-front'></textarea><textarea class='flashcard-back'></textarea></div>";
 
 function insert_flashcard(front, back) {
-    let tcg = "<div class='flashcard'> <textarea class='flashcard-front'>"
+    let tcg = "<div class='flashcard'><textarea class='flashcard-front'>"
               + front + "</textarea><textarea class='flashcard-back'>"
               + back + "</textarea></div>";
     $(tcg).insertBefore("#add-flashcard");
@@ -32,14 +29,12 @@ function get_flashcards_str() {
     let str = "";
     console.log("getflashcardsstr");
     $(".flashcard").each(function(index) {
-        if (str != "") {
-            str += ",";
-        }
-        console.log($(this).children()[0].text());
-        console.log($(this).children()[1].text());
-        str += $(this).children()[0].text();
-        str += "\\"
-        str += $(this).children()[0].text();
+        if (str != "") { str += ","; }
+        console.log($($(this).children()[0]).val());
+        console.log($($(this).children()[1]).val());
+        str += $($(this).children()[0]).val();
+        str += "\\";
+        str += $($(this).children()[1]).val();
     });
     console.log("endflashcardsstr");
     return str;
