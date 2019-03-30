@@ -13,16 +13,17 @@
         <script src="/js/FlashcardsetEdit.js"></script>
     </head>
     <body>
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
         <div id="topbar">
             <h1 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
             <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
         </div>
-        <div id="flashcardset">
-            <div id="add-flashcard">
-                <textarea class="flashcard-front">+</textarea>
-                <textarea class="flashcard-back">+</textarea>
-            </div>
-        </div>
+        <div id="flashcardset"><!--To prevent space between inline-blocks.
+        --><div id="add-flashcard"><!--
+            --><textarea class="flashcard-front">+</textarea><!--
+            --><textarea class="flashcard-back">+</textarea><!--
+        --></div><!--
+     --></div>
 
         <button type="button" id="save-button">Save</button>
     </body>

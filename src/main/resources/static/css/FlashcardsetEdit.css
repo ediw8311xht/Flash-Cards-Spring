@@ -1,6 +1,7 @@
 
 body {
     padding: 10px;
+    text-align: center;
 }
 
 
@@ -16,6 +17,7 @@ body {
     font-size: 30px;
     padding: 10px;
     margin: 0px;
+    resize: none;
 }
 
 .flashcard-front {

@@ -15,7 +15,7 @@
         <script src="/js/Flashcardset.js"></script>
     </head>
     <body>
-
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
         <div id="topbar">
             <h1 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
             <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
@@ -25,10 +25,10 @@
 
             <button id="flashcard-previous">🡄</button>
             <div id="flashcard">
-              <div id="wrapflext">
-                <p id="flashcard-front">Front</p>
-                <p id="flashcard-back">Back</p>
-              </div>
+                <div id="wrapflext">
+                    <p id="flashcard-front">Front</p>
+                    <p id="flashcard-back">Back</p>
+                </div>
             </div>
             <button id="flashcard-next">🡆</button>
         </div>
