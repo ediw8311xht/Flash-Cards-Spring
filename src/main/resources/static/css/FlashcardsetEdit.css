@@ -44,3 +44,12 @@ body {
     opacity: 1;
     display: inline-block;
 }
+
+#save-button {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

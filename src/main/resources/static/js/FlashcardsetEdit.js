@@ -28,6 +28,27 @@ function write_flashcards(flashcards) {
     }
 }
 
+function get_flashcards_str() {
+    let str = "";
+    console.log("getflashcardsstr");
+    $(".flashcard").each(function(index) {
+        if (str != "") {
+            str += ",";
+        }
+        console.log($(this).children()[0].text());
+        console.log($(this).children()[1].text());
+        str += $(this).children()[0].text();
+        str += "\\"
+        str += $(this).children()[0].text();
+    });
+    console.log("endflashcardsstr");
+    return str;
+}
+
+function save_flashcard(flashcards) {
+
+}
+
 var information = {"id": ""};
 
 $(document).ready(function() {
@@ -54,14 +75,11 @@ $(document).ready(function() {
                     "back" : "bigboy"};
         $(new_flashcard).insertBefore("#add-flashcard");
         $(".flashcard").last().children().first().focus();
-        $.post("/flashcard/ajax/Flashcardset/addCard",
-               {"id": information["id"], "front": "asdfsa", "back" : "bigboy"},
-               function(data) {
-                   console.log("POST START");
-                   console.log(data);
-                   console.log("POST END");
-                   write_flashcards(data["flashcardsStr"]);
-               }
-        );
+    });
+
+    $("#save-button").on("click", function() {
+        $.post("/flashcard/ajax/Flashcardset/updateCards", {"id": information["id"], "flashcards": get_flashcards_str()},
+               function(data) { console.log(data); });
+        console.log("Done with POST Save");
     });
 });
