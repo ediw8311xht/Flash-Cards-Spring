@@ -39,7 +39,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/flashcard/makeNewFlashcardset").authenticated()
                 .antMatchers("/flashcard/Flashcardset/edit").authenticated()
                 .antMatchers("/**").permitAll()
-                .and().formLogin().loginPage("/flashcard/User/login");
+                .and()
+                    .formLogin()
+                        .loginPage("/flashcard/User/login")
+                        .defaultSuccessUrl("/flashcard/");
     }
 
     @Override
