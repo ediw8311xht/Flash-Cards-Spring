@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>User</title>
+    </head>
+    <body>
+
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
+
+        <div id="topbar">
+            <h1 id="username" th:inline="text">Username: [[${username}]]</h1>
+            <h1 id="flashsets" th:inline="text">Flashsets: [[${flashsets}]]</h1>
+        </div>
+        
+    </body>
+</html>
