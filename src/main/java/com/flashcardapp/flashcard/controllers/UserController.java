@@ -1,6 +1,7 @@
 package com.flashcardapp.flashcard.controllers;
 
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
@@ -26,6 +27,7 @@ public class UserController {
     @GetMapping("/me")
     public String MyProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         User user_n = userRepo.findOne(auth.getName());
         model.addAttribute("username", user_n.getUsername());
         model.addAttribute("flashsets", user_n.getFlashsetsStr());
@@ -35,6 +37,8 @@ public class UserController {
 
     @GetMapping("/")
     public String User(@RequestParam("username") String username, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         User user_n = userRepo.findOne(username);
         if (user_n == null) {
             return "UserNotFound";

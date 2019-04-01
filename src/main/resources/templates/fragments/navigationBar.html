@@ -11,11 +11,12 @@
 
             <div id="navigation-bar">
                 <img id="nav-logo" src="https://res.cloudinary.com/maceurt/image/upload/v1553974932/pixil-frame-0_zpcg9l.png">
-                <a href="Home">Flashcards</a>
+                <a href="/flashcard/makeNewFlashcardset">New Set</a>
                 <span> --- </span>
-                <a href="Edit">Edit</a>
+                <a href="/flashcard/Flashcardset/edit">Edit</a>
                 <span> --- </span>
-                <a href="Get">Community</a>
+                <a th:if="${logged_in}" href="/flashcard/User/me">My Profile</a>
+                <a th:unless="${logged_in}" href="/flashcard/User/login">Log In</a>
             </div>
         </div>
 

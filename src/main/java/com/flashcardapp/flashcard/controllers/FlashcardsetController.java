@@ -1,5 +1,8 @@
 package com.flashcardapp.flashcard.controllers;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +34,8 @@ public class FlashcardsetController {
 
     @GetMapping("/Flashcardset")
     public String getFlashcardset(@RequestParam("id") String id, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         if (fcs != null) {
             model.addAttribute("flashcardset", fcs);
@@ -43,6 +48,8 @@ public class FlashcardsetController {
 
     @GetMapping("/Flashcardset/edit")
     public String editFlashcardset(@RequestParam("id") String id, Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         if (fcs != null) {
             model.addAttribute("flashcardset", fcs);
