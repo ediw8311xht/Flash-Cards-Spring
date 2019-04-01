@@ -35,10 +35,11 @@ public class UserController {
 
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String User(@RequestParam("username") String username, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
+        System.out.println("USERNAME " + username);
         User user_n = userRepo.findOne(username);
         if (user_n == null) {
             return "UserNotFound";
