@@ -38,7 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                         .loginPage("/flashcard/User/login")
-                        .defaultSuccessUrl("/flashcard/");
+                        .defaultSuccessUrl("/flashcard/")
+                .and()
+                    .logout()
+                    .logoutUrl("/flashcard/User/logout")
+                    .logoutSuccessUrl("/flashcard/");
     }
 
     @Override
