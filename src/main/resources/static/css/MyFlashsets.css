@@ -1,0 +1,50 @@
+body {
+    background-color: rgb(30,41,77);
+}
+
+#links-wrap {
+    margin-top: 4vh;
+}
+
+#header-flashset, .flashset-wrapper {
+    background-color: rgb(87,26,58);
+    width: 900px;
+    margin: 0 auto;
+    padding: 0px;
+}
+
+#header-flashset div, .flashset-wrapper div {
+    width: 297px;
+    display: inline-block;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+#header-flashset div h1 {
+    color: rgb(159,168,221);
+    text-shadow: 2px 2px rgb(213, 0, 0);
+    font-weight: none;
+    font-family: "Germania One";
+}
+
+.flashset-wrapper {
+    height: 90px;
+    background-color: rgb(63, 81, 181);
+    margin: 0 auto;
+    text-align: left;
+    padding: 0px;
+}
+
+.flashset-wrapper div:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.flashset-name, .flashset-id, .flashset-flashcards {
+    color: rgb(159,168,221);
+    font-family: "Oswald", sans-serif;
+    font-size: 25px;
+    text-decoration: none;
+    text-shadow: 2px 2px rgb(87,26,58);
+}

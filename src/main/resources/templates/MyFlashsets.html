@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <title>Flashcards</title>
+        <link rel="stylesheet" type="text/css" href="/css/MyFlashsets.css">
+    </head>
+    <body>
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
+        <div id="links-wrap">
+            <div id="header-flashset">
+                <div>
+                    <h1>Name</h1>
+                </div>
+                <div>
+                    <h1>ID</h1>
+                </div>
+                <div>
+                    <h1>Flashcards</h1>
+                </div>
+            </div>
+            <div th:each="flashset : ${flashsets}">
+                <div class="flashset-wrapper">
+                    <div>
+                        <h1>
+                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-name" th:text="${flashset.name}">Sample set</a>
+                        </h1>
+                    </div>
+                    <div>
+                        <h1>
+                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-id" th:text="${flashset.id}"></a>
+                        </h1>
+                    </div>
+                    <div>
+                        <h1>
+                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-flashcards" th:text="${#lists.size(flashset.flashcards)}"></a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

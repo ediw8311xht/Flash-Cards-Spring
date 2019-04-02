@@ -1,3 +1,6 @@
+body {
+    background-color: rgb(30,41,77);
+}
 
 #wrapflext {
     height: 100%;
@@ -12,7 +15,6 @@
 
 #flashcard {
     display: inline-block;
-    background-color: green;
     padding: 10px;
     width: 630px;
     height: 400px;
@@ -24,6 +26,10 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    text-shadow: 4px 4px black;
+    background-color: rgb(87,26,58);
+    color: rgb(159,168,221);
+    font-family: "Baloo Chettan", cursive;
 }
 
 #flashcard-front, #flashcard-back {

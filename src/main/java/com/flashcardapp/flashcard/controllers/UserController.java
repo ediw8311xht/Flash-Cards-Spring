@@ -1,6 +1,9 @@
 package com.flashcardapp.flashcard.controllers;
 
 
+import com.flashcardapp.flashcard.repositories.FlashcardRepository;
+import com.flashcardapp.flashcard.ent.Flashcardset;
+import java.util.ArrayList;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
@@ -19,9 +22,11 @@ import com.flashcardapp.flashcard.repositories.UserRepository;
 public class UserController {
 
     private UserRepository userRepo;
+    private FlashcardRepository flashcardRepo;
 
-    public UserController(UserRepository userRepo) {
+    public UserController(UserRepository userRepo, FlashcardRepository flashcardRepo) {
         this.userRepo = userRepo;
+        this.flashcardRepo = flashcardRepo;
     }
 
     @GetMapping("")
@@ -39,7 +44,7 @@ public class UserController {
             return "User";
         }
     }
-    
+
     @GetMapping("/me")
     public String MyProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -76,4 +81,20 @@ public class UserController {
     public String UserLogin() {
         return "Login";
     }
+
+    @GetMapping("/myFlashsets")
+    public String getFlashcardsetEdit(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
+        User ln_user = userRepo.findOne(auth.getName());
+
+        ArrayList<Flashcardset> inftc = new ArrayList<Flashcardset>();
+        ArrayList<String> ftc = ln_user.getFlashsets();
+        for (String c : ftc) {
+            inftc.add(this.flashcardRepo.findOne(c));
+        }
+        model.addAttribute("flashsets", inftc);
+        return "MyFlashsets";
+    }
+    
 }

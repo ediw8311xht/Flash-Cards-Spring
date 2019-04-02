@@ -45,13 +45,4 @@ public class HomeController {
         return "GetSet";
     }
 
-    @GetMapping("/getFlashcardsetEdit")
-    public String getFlashcardsetEdit(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
-        User ln_user = userRepo.findOne(auth.getName());
-        model.addAttribute("flashsets", ln_user.getFlashsets());
-        return "GetSetEdit";
-    }
-
 }
