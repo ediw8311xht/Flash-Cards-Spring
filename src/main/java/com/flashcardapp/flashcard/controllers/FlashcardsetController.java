@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.flashcardapp.flashcard.repositories.UserRepository;
+import com.flashcardapp.flashcard.ent.User;
 import com.flashcardapp.flashcard.repositories.FlashcardRepository;
 import com.flashcardapp.flashcard.ent.Flashcardset;
 
@@ -19,15 +21,29 @@ import com.flashcardapp.flashcard.ent.Flashcardset;
 public class FlashcardsetController {
 
     private FlashcardRepository flashcardRepo;
+    private UserRepository userRepo;
 
-    public FlashcardsetController(FlashcardRepository flashcardRepo) {
+    public FlashcardsetController(FlashcardRepository flashcardRepo, UserRepository userRepo) {
         this.flashcardRepo = flashcardRepo;
+        this.userRepo = userRepo;
     }
 
     @PostMapping("/makeNewFlashcardset")
     public ModelAndView makeFlashcardset(@RequestParam("name") String name) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        //Check for login
+        if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
+            return new ModelAndView("redirect:/flashcard/User/login");
+        }
+        else {
+            User ln_user = this.userRepo.findOne(auth.getName());
+        }
+
+
         String id = this.flashcardRepo.makeRandomId();
         Flashcardset new_fs = new Flashcardset(id, name);
+        ln_user.addFlashset(id);
         this.flashcardRepo.save(new_fs);
         return new ModelAndView("redirect:/flashcard/Flashcardset?id=" + id);
     }
