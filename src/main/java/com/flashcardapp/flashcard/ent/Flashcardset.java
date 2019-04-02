@@ -15,27 +15,30 @@ public class Flashcardset {
     //i.e. "2 + 2\4"
     private ArrayList<String> flashcards = new ArrayList<String>();
 
-
+    private String owner;
     //-------------------------------------------------------------------------------------------//
     //-----------------------------------------------------------------CONSTRUCTORS--------------//
     //-------------------------------------------------------------------------------------------//
 
     //Id should not be picked by user.
     //Should be determined by repository to ensure uniqueness
-    public Flashcardset(String id) {
+    public Flashcardset(String id, String owner) {
         this.id = id;
         this.name = "untitled";
+        this.owner = owner;
     }
 
-    public Flashcardset(String id, String name) {
+    public Flashcardset(String id, String name, String owner) {
         this.id = id;
         this.name = name;
+        this.owner = owner;
     }
 
-    public Flashcardset(String id, String name, String flashcards) {
+    public Flashcardset(String id, String name, String flashcards, String owner) {
         this.id = id;
         this.name = name;
         setFlashcardsFromStr(flashcards);
+        this.owner = owner;
     }
 
 
@@ -71,6 +74,10 @@ public class Flashcardset {
         else {
             return String.join(",", this.flashcards);
         }
+    }
+
+    public String getOwner() {
+        return this.owner;
     }
 
 

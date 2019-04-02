@@ -43,8 +43,8 @@ public class FlashcardRepository {
             return null;
         }
         else {
-            jdbc.update("INSERT INTO Flashcardset (id, name, flashcards) VALUES (?, ?, ?)",
-                        Flashcardset.getId(), Flashcardset.getName(), Flashcardset.getFlashcardsStr());
+            jdbc.update("INSERT INTO Flashcardset (id, name, flashcards, owner) VALUES (?, ?, ?, ?)",
+                        Flashcardset.getId(), Flashcardset.getName(), Flashcardset.getFlashcardsStr(), Flashcardset.getOwner());
             return Flashcardset;
         }
     }
@@ -55,7 +55,7 @@ public class FlashcardRepository {
 
     public Flashcardset findOne(String id) {
         try {
-            return jdbc.queryForObject("SELECT id, name, flashcards FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
+            return jdbc.queryForObject("SELECT id, name, flashcards, owner FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
         } catch (EmptyResultDataAccessException e) {
             System.out.println("No result found for that query.");
             return null;
@@ -65,7 +65,7 @@ public class FlashcardRepository {
 
     private Flashcardset mapRowToFlashcardset(ResultSet rs, int rowNum) throws SQLException {
         if (!rs.isBeforeFirst()) {
-            return new Flashcardset(rs.getString("id"), rs.getString("name"), rs.getString("flashcards"));
+            return new Flashcardset(rs.getString("id"), rs.getString("name"), rs.getString("flashcards"), rs.getString("owner"));
         }
         else {
             System.out.println("no results found.");

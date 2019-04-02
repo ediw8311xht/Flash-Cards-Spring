@@ -24,17 +24,6 @@ public class UserController {
         this.userRepo = userRepo;
     }
 
-    @GetMapping("/me")
-    public String MyProfile(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
-        User user_n = userRepo.findOne(auth.getName());
-        model.addAttribute("username", user_n.getUsername());
-        model.addAttribute("flashsets", user_n.getFlashsetsStr());
-        return "User";
-
-    }
-
     @GetMapping("")
     public String User(@RequestParam("username") String username, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -49,6 +38,25 @@ public class UserController {
             model.addAttribute("flashsets", user_n.getFlashsetsStr());
             return "User";
         }
+    }
+    
+    @GetMapping("/me")
+    public String MyProfile(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        //Check if logged in. If not, redirects to login page.
+        if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
+            model.addAttribute("logged_in", false);
+            return "redirect:/flashcard/User/login";
+        }
+
+        model.addAttribute("logged_in", true);
+
+        User user_n = userRepo.findOne(auth.getName());
+        model.addAttribute("username", user_n.getUsername());
+        model.addAttribute("flashsets", user_n.getFlashsetsStr());
+        return "User";
+
     }
 
     @GetMapping("/register")

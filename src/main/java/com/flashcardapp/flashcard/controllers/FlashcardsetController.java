@@ -31,19 +31,12 @@ public class FlashcardsetController {
     @PostMapping("/makeNewFlashcardset")
     public ModelAndView makeFlashcardset(@RequestParam("name") String name) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-        //Check for login
-        if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)) {
-            return new ModelAndView("redirect:/flashcard/User/login");
-        }
-        else {
-            User ln_user = this.userRepo.findOne(auth.getName());
-        }
-
+        User ln_user = this.userRepo.findOne(auth.getName());
 
         String id = this.flashcardRepo.makeRandomId();
-        Flashcardset new_fs = new Flashcardset(id, name);
+        Flashcardset new_fs = new Flashcardset(id, name, ln_user.getUsername());
         ln_user.addFlashset(id);
+        this.userRepo.updateUserDetails(ln_user);
         this.flashcardRepo.save(new_fs);
         return new ModelAndView("redirect:/flashcard/Flashcardset?id=" + id);
     }
@@ -67,12 +60,15 @@ public class FlashcardsetController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         Flashcardset fcs = this.flashcardRepo.findOne(id);
-        if (fcs != null) {
-            model.addAttribute("flashcardset", fcs);
-            return "SetEdit";
+        if (fcs == null) {
+            return "SetNotFound";
+        }
+        else if (fcs.getOwner() != auth.getName()) {
+            return "NotOwner";
         }
         else {
-            return "SetNotFound";
+            model.addAttribute("flashcardset", fcs);
+            return "SetEdit";
         }
     }
 

@@ -8,7 +8,7 @@ public class User {
 
     private String username;
     private String password;
-    private ArrayList<String> flashsets;
+    private ArrayList<String> flashsets = new ArrayList<String>();
     private boolean enabled;
 
     //-------------------------------------------------------------------------------------------//
@@ -29,10 +29,10 @@ public class User {
         this.enabled = enabled;
     }
 
-    public User(String username, String password, String flashsets, boolean enabled) {
+    public User(String username, String password, String flsets, boolean enabled) {
         this.username = username;
         this.password = password;
-        setFlashsetsFromStr(flashsets);
+        setFlashsetsFromStr(flsets);
         this.enabled = enabled;
     }
 
@@ -41,7 +41,20 @@ public class User {
     //-------------------------------------------------------------------------------------------//
 
     public String getFlashsetsStr() {
-        return String.join(",", this.flashsets);
+
+        if (this.flashsets.size() == 0) {
+            return "";
+        }
+        else if (this.flashsets.size() == 1) {
+            System.out.println("S");
+            System.out.println(this.flashsets);
+            System.out.println("END");
+            return this.flashsets.get(0);
+        }
+        else {
+            return String.join(",", this.flashsets);
+        }
+
     }
 
     public ArrayList<String> getFlashsets() {
@@ -76,13 +89,13 @@ public class User {
         this.enabled = enabled;
     }
 
-    public void setFlashsetsFromStr(String flashsets) {
-        if (flashsets == "") {
-            this.flashsets = new ArrayList<String>();
+    public void setFlashsetsFromStr(String flsets) {
+
+        //Makes sure that it does not set empty value
+        if (!flsets.equals("")) {
+            this.flashsets = new ArrayList<String>(Arrays.asList(flsets.split(",")));
         }
-        else {
-            this.flashsets = new ArrayList<String>(Arrays.asList(flashsets.split(",")));
-        }
+        
     }
 
     public void addFlashset(String flashset) {
