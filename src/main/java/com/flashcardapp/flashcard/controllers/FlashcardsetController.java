@@ -58,12 +58,15 @@ public class FlashcardsetController {
     @GetMapping("/Flashcardset/edit")
     public String editFlashcardset(@RequestParam("id") String id, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
+        model.addAttribute("logged_in", true);
+
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         if (fcs == null) {
             return "SetNotFound";
         }
-        else if (fcs.getOwner() != auth.getName()) {
+        else if (!fcs.getOwner().equals(auth.getName())) {
+            System.out.println(fcs.getOwner());
+            System.out.println(auth.getName());
             return "NotOwner";
         }
         else {
