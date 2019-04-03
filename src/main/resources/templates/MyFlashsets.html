@@ -24,20 +24,15 @@
             <div th:each="flashset : ${flashsets}">
                 <div class="flashset-wrapper">
                     <div>
-                        <h1>
-                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-name" th:text="${flashset.name}">Sample set</a>
-                        </h1>
+                        <h1 class="flashset-name" th:text="${flashset.name}"></h1>
                     </div>
                     <div>
-                        <h1>
-                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-id" th:text="${flashset.id}"></a>
-                        </h1>
+                        <h1 class="flashset-id" th:text="${flashset.id}"></h1>
                     </div>
                     <div>
-                        <h1>
-                            <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}" class="flashset-flashcards" th:text="${#lists.size(flashset.flashcards)}"></a>
-                        </h1>
+                        <h1 class="flashset-flashcards" th:text="${#lists.size(flashset.flashcards)}"></h1>
                     </div>
+                    <a th:href="@{/flashcard/Flashcardset(id=${flashset.id})}"><div class="flashset-flip-wrap"><h1 class="flashset-view">VIEW</h1></div></a><a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}"><div class="flashset-flip-wrap"><h1 class="flashset-edit">EDIT</h1></div></a>
                 </div>
             </div>
         </div>

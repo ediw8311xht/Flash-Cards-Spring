@@ -4,6 +4,7 @@ body {
 
 #links-wrap {
     margin-top: 4vh;
+    padding: 0px;
 }
 
 #header-flashset, .flashset-wrapper {
@@ -33,18 +34,47 @@ body {
     background-color: rgb(63, 81, 181);
     margin: 0 auto;
     text-align: left;
-    padding: 0px;
+    padding: 0px !important;
+    margin-bottom: 0px;
 }
 
-.flashset-wrapper div:hover {
-    opacity: 0.8;
-    cursor: pointer;
-}
-
-.flashset-name, .flashset-id, .flashset-flashcards {
+.flashset-name, .flashset-id, .flashset-flashcards, .flashset-view, .flashset-edit {
     color: rgb(159,168,221);
     font-family: "Oswald", sans-serif;
     font-size: 25px;
     text-decoration: none;
     text-shadow: 2px 2px rgb(87,26,58);
+}
+
+.flashset-flip-wrap {
+    display: none;
+}
+
+.flashset-flip-wrap * {
+    display: none;
+}
+
+.flashset-wrapper:hover{
+    cursor: pointer;
+}
+
+.flashset-wrapper:hover div{
+    display: none;
+}
+
+.flashset-wrapper:hover .flashset-flip-wrap {
+    display: inline-block !important;
+    margin: 0px;
+    width: 50%;
+    height: 90%;
+}
+
+.flashset-wrapper:hover h1 {
+    display: inline-block;
+    text-align: center;
+}
+
+.flashset-flip-wrap:hover {
+    opacity: 0.5;
+    background-color: rgba(83, 91, 201, 255);
 }
