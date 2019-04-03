@@ -1,0 +1,46 @@
+
+body {
+    background-color: rgb(30,41,77);
+}
+
+#login-wrapper {
+    font-family: "Oswald";
+    background-color: white;
+    width: 600px;
+    margin: 0px auto;
+    margin-top: 10vh;
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+    box-shadow: 5px 10px #888888;
+}
+
+#login-wrapper form * {
+    font-size: 20px;
+    text-align: left;
+}
+
+#login-wrapper form div {
+  width: 100%;
+  padding: 0px;
+  margin-bottom: 10px;
+}
+
+#login-wrapper form div p {
+    display: inline-block;
+    width: 50%;
+    margin: 0px;
+}
+
+#login-wrapper form div input {
+    width: 47%;
+    margin: 0px;
+    margin-right: 2%;
+}
+
+
+#login-wrapper form input {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
