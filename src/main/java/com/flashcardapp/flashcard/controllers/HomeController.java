@@ -2,7 +2,6 @@ package com.flashcardapp.flashcard.controllers;
 
 import com.flashcardapp.flashcard.repositories.FlashcardRepository;
 import com.flashcardapp.flashcard.repositories.UserRepository;
-import com.flashcardapp.flashcard.ent.User;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
