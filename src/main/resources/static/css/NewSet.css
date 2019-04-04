@@ -1,0 +1,26 @@
+
+body {
+    background-color: rgb(30,41,77);
+    text-align: center;
+}
+
+#new-flashset {
+    background-color: rgb(63, 81, 181);
+    width: 700px;
+    margin: 0px auto;
+    margin-top: 6vh;
+    font-family: "Oswald";
+    color: rgb(159,168,221);
+    text-shadow: 2px 2px rgb(87,26,58);
+    padding: 5px;
+    padding-bottom: 16px;
+}
+
+#new-flashset form input[type=submit] {
+    font-size: 20px;
+}
+
+#new-flashset form input[type=text] {
+    margin-right: 5px;
+    font-size: 20px;
+}

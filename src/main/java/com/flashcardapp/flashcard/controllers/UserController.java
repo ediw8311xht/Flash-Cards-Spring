@@ -73,7 +73,6 @@ public class UserController {
 
     @PostMapping("/register")
     public ModelAndView PostUserRegister(@RequestParam("username") String username, @RequestParam("password") String password ) {
-        System.out.println("HHHbbbHHHbbbHHHaaaHHHaaa - - - - - . 0");
         User new_user = new User(username, password);
         userRepo.save(new_user);
         return new ModelAndView("redirect:/flashcard/User?username=" + username);
@@ -89,7 +88,6 @@ public class UserController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         User ln_user = userRepo.findOne(auth.getName());
-
         ArrayList<Flashcardset> inftc = new ArrayList<Flashcardset>();
         ArrayList<String> ftc = ln_user.getFlashsets();
         for (String c : ftc) {

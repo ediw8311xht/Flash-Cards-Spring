@@ -5,13 +5,21 @@
     <head>
         <meta charset="utf-8">
         <title>Flashcards</title>
+        <link rel="stylesheet" text="text/css" href="/css/NewSet.css">
     </head>
+
     <body>
+
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
-        <form action="/flashcard/makeNewFlashcardset" method="post">
-            <p>Name of your new set of flashcards:</p>
-            <input type="text" name="name">
-            <input type="submit" name="Create new set of flashcards" value="submit">
-        </form>
+        
+        <div id="new-flashset">
+            <form action="/flashcard/makeNewFlashcardset" method="post">
+                <h1>Name of your new set of flashcards:</h1>
+                <input type="text" name="name">
+                <input type="submit" name="Create new set of flashcards" value="submit">
+            </form>
+        </div>
+
     </body>
+
 </html>
