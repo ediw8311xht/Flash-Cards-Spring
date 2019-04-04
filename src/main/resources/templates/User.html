@@ -5,15 +5,17 @@
     <head>
         <meta charset="utf-8">
         <title>User</title>
+        <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/User.css">
     </head>
     <body>
 
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
 
-        <div id="topbar">
-            <h1 id="username" th:inline="text">Username: [[${username}]]</h1>
-            <h1 id="flashsets" th:inline="text">Flashsets: [[${flashsets}]]</h1>
+        <div id="profile-information">
+            <h1 th:text="${username}"></h1>
+            <div class="profile-seperator"></div>
+            <h2 th:inline="text">Flashsets: [[${#lists.size(flashsets)}]]</h2>
         </div>
-        
     </body>
 </html>

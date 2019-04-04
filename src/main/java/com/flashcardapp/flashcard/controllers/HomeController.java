@@ -1,5 +1,7 @@
 package com.flashcardapp.flashcard.controllers;
 
+import com.flashcardapp.flashcard.ent.Flashcardset;
+import java.util.ArrayList;
 import com.flashcardapp.flashcard.repositories.FlashcardRepository;
 import com.flashcardapp.flashcard.repositories.UserRepository;
 
@@ -27,6 +29,12 @@ public class HomeController {
     public String FlashcardsetHome(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
+        String[] ft_sets = {"XWyXCSsbjQDpVpE", "85lr4uHmkxTEuah"};
+        ArrayList<Flashcardset> featured_sets = new ArrayList<Flashcardset>();
+        for (int i = 0; i < ft_sets.length; i++) {
+            featured_sets.add(this.flashRepo.findOne(ft_sets[i]));
+        }
+        model.addAttribute("featured_flashsets", featured_sets);
         return "Home";
     }
 

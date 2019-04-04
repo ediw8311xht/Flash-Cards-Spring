@@ -2,14 +2,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
+
     <head>
         <meta charset="utf-8">
         <title>Flashcards</title>
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/css/Home.css">
     </head>
+
     <body>
+
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
-        <h1>Links:</h1>
-        <a href="/flashcard/makeNewFlashcardset">Make new flashcardset</a>
-        <a href="/flashcard/getFlashcardset">Get flashcard set by id</a>
+
+        <div id="Home-Featured">
+            <h1>Featured Flashcard Sets</h1>
+            <div class="featured-flashset" th:each="flashset : ${featured_flashsets}">
+                <a th:href="@{/flashcard/Flashcardset(id=${flashset.id})}"><h2 class="featured-set-name" th:text="${flashset.name}"></h2></a><a th:href="@{/flashcard/User(username=${flashset.owner})}"><h2 class="featured-set-by" th:inline="text">By: [[${flashset.owner}]]</h2></a>
+            </div>
+        </div>
+
     </body>
+
 </html>

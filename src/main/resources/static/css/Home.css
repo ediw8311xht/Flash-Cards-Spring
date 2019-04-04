@@ -1,0 +1,31 @@
+
+
+body {
+    background-color: rgb(30,41,77);
+    text-align: center;
+}
+
+#Home-Featured {
+    font-family: "Oswald";
+    color: rgb(159,168,221) !important;
+    text-shadow: 2px 2px rgb(87,26,58);
+    background: linear-gradient(rgb(63, 81, 181) 50%, black 70%);
+    width: 800px;
+    margin: 0px auto;
+}
+
+.featured-flashset h2 {
+    width: 50%;
+    display: inline-block;
+    color: rgb(159,168,221) !important;
+}
+
+.featured-flashset .featured-set-name:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.featured-flashset .featured-set-by:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}

@@ -40,7 +40,8 @@ public class UserController {
         }
         else {
             model.addAttribute("username", user_n.getUsername());
-            model.addAttribute("flashsets", user_n.getFlashsetsStr());
+            model.addAttribute("flashsets", user_n.getFlashsets());
+            model.addAttribute("is_owner", false);
             return "User";
         }
     }
@@ -59,7 +60,8 @@ public class UserController {
 
         User user_n = userRepo.findOne(auth.getName());
         model.addAttribute("username", user_n.getUsername());
-        model.addAttribute("flashsets", user_n.getFlashsetsStr());
+        model.addAttribute("flashsets", user_n.getFlashsets());
+        model.addAttribute("is_owner", true);
         return "User";
 
     }
@@ -96,5 +98,5 @@ public class UserController {
         model.addAttribute("flashsets", inftc);
         return "MyFlashsets";
     }
-    
+
 }
