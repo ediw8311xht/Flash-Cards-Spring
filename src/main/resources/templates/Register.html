@@ -5,16 +5,23 @@
     <head>
         <meta charset="utf-8">
         <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="/css/Register.css">
     </head>
     <body>
 
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
 
-        <form action="/flashcard/User/register" method="post">
-            <input type="text" name="username">
-            <input type="text" name="password">
-            <input type="submit" value="submit">
-        </form>
+
+        <div id="login-wrapper">
+            <h1>Register</h1>
+            <form action="/flashcard/User/register" method="post">
+                <div>
+                    <p>Username:</p><p>Password:</p>
+                </div>
+                <div><input type="text" name="username"><input type="password" name="password"></div>
+                <input type="submit">
+            </form>
+        </div>
 
     </body>
 </html>

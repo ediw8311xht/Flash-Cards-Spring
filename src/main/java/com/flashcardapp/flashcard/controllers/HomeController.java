@@ -29,7 +29,7 @@ public class HomeController {
     public String FlashcardsetHome(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
-        String[] ft_sets = {"XWyXCSsbjQDpVpE", "85lr4uHmkxTEuah"};
+        String[] ft_sets = {};
         ArrayList<Flashcardset> featured_sets = new ArrayList<Flashcardset>();
         for (int i = 0; i < ft_sets.length; i++) {
             featured_sets.add(this.flashRepo.findOne(ft_sets[i]));
