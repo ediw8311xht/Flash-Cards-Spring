@@ -1,3 +1,4 @@
+
 body {
     background-color: rgb(30,41,77);
 }
@@ -15,6 +16,8 @@ body {
 
 #flashcard {
     display: inline-block;
+    text-shadow: 4px 4px black;
+    background-color: #3F51B5;
     padding: 10px;
     width: 630px;
     height: 400px;
@@ -26,28 +29,68 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    text-shadow: 4px 4px black;
-    background-color: rgb(87,26,58);
     color: rgb(159,168,221);
     font-family: "Baloo Chettan", cursive;
+    overflow: auto;
 }
 
-#flashcard-front, #flashcard-back {
+#flashcard * {
     margin: auto;
     text-align: center;
-    font-size: 70px;
+    font-size: 55px;
     pointer-events: none;
+}
+
+
+
+#flashcard-front {
 }
 
 #flashcard-back {
     display: none;
 }
 
+#flashcard-bottom-bar {
+    font-family: "Oswald";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vh;
+    background-color: rgb(63, 81, 181);
+    padding: 0px;
+}
+
+#flashcard-bottom-bar * {
+    margin: 0px;
+    color: rgb(213, 40, 40);
+    text-shadow: 3px 3px black;
+}
+
+#flashcard-bottom-bar p {
+    font-weight: bold;
+    font-size: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#flashcard-bottom-bar *:hover {
+    opacity: 0.6;
+}
+
 #flashcard-previous, #flashcard-next {
     display: inline-block;
-    font-size: 30px;
+    font-size: 60px;
     background: none;
     border: none;
     margin: 0px;
     cursor: pointer;
+}
+
+#flashcard-previous {
+
+
+}
+
+#flashcard-next {
+
 }
