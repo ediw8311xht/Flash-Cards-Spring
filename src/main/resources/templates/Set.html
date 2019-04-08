@@ -15,12 +15,13 @@
         <script src="/js/Flashcardset.js"></script>
     </head>
     <body>
-        <div th:replace="fragments/navigationBar :: navigationBar"></div>
-        <div id="topbar">
-            <h1 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
-            <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
-        </div>
 
+        <div th:replace="fragments/navigationBar :: navigationBar"></div>
+
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+        
         <div id="flashcard-wrapper">
 
             <div id="flashcard">
@@ -33,9 +34,11 @@
         </div>
 
         <div id="flashcard-bottom-bar">
+            <h2 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
             <button id="flashcard-previous">🡄</button>
             <p>COPY</p>
             <button id="flashcard-next">🡆</button>
+            <h2 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
         </div>
 
     </body>
