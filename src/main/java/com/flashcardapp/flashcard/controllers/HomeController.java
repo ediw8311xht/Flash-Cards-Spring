@@ -1,5 +1,6 @@
 package com.flashcardapp.flashcard.controllers;
 
+import com.flashcardapp.flashcard.ent.User;
 import com.flashcardapp.flashcard.ent.Flashcardset;
 import java.util.ArrayList;
 import com.flashcardapp.flashcard.repositories.FlashcardRepository;
@@ -29,13 +30,24 @@ public class HomeController {
     public String FlashcardsetHome(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
-        String[] ft_sets = {};
-        ArrayList<Flashcardset> featured_sets = new ArrayList<Flashcardset>();
-        for (int i = 0; i < ft_sets.length; i++) {
-            featured_sets.add(this.flashRepo.findOne(ft_sets[i]));
+
+        //"featured_set_user" is a user that is specifically made to only store featured flashcardsets.
+        //This user should not create flashcardsets, should only copy sets from other users. 
+        User feat_user =  userRepo.findOne("featured_set_user");
+        if (feat_user == null) {
+            System.out.println("Featured user does not exist. You should probably create one.");
+            return "Home";
         }
-        model.addAttribute("featured_flashsets", featured_sets);
-        return "Home";
+        else {
+            ArrayList<String> ft_sets = feat_user.getFlashsets();
+
+            ArrayList<Flashcardset> featured_sets = new ArrayList<Flashcardset>();
+            for (int i = 0; i < ft_sets.size(); i++) {
+                featured_sets.add(this.flashRepo.findOne(ft_sets.get(i)));
+            }
+            model.addAttribute("featured_flashsets", featured_sets);
+            return "Home";
+        }
     }
 
     @GetMapping("/makeNewFlashcardset")
