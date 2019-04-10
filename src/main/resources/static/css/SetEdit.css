@@ -1,0 +1,80 @@
+
+body {
+    background-color: rgb(30,41,77);
+}
+
+.front-flashcard, .back-flashcard {
+    display: inline-block;
+}
+
+#flashcard-set {
+    width: 700px;
+    margin: 0px auto;
+    margin-top: 40px;
+    display: block;
+    padding: 0;
+    list-style: none;
+    box-shadow: 10px 10px black;
+}
+
+.flashcard, #add-flashcard {
+    height: 90px;
+    margin-top: 0px;
+    background-color: rgb(170, 170, 170);
+    text-align: left;
+    padding: 10px;
+}
+
+.front-flashcard, .back-flashcard {
+    vertical-align: middle;
+}
+
+.front-flashcard {
+    margin-right: 10px;
+}
+
+.front-flashcard textarea, .back-flashcard textarea{
+    border-bottom: 2px solid black;
+    cols: "1";
+    resize: none;
+    width: 300px;
+    height: 50px;
+    margin: 0px;
+    font-size: 20px;
+}
+
+.front-flashcard p, .back-flashcard p {
+    margin: 0px;
+    text-align: center;
+    padding: 0px;
+    font-family: "Baloo Chettan";
+    font-size: 15px;
+}
+
+.delete-flashcard {
+    vertical-align: middle;
+    background: none;
+    border: none;
+    font-size: 40px;
+    font-weight: 500;
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.delete-flashcard:hover {
+    opacity: 1;
+}
+
+#add-flashcard {
+    text-align: center;
+    opacity: 0.3;
+    cursor: pointer !important;
+    font-size: 25px;
+    font-family: "Baloo Chettan";
+}
+
+
+
+#add-flashcard:hover {
+    opacity: 1;
+}

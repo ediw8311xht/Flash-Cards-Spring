@@ -1,6 +1,5 @@
 
 
-
 var new_flashcard = "<div class='flashcard'><textarea class='flashcard-front' spellcheck='false'></textarea><textarea class='flashcard-back' spellcheck='false'></textarea></div>";
 
 function insert_flashcard(front, back) {
@@ -65,9 +64,6 @@ $(document).ready(function() {
     );
 
     $("#add-flashcard").on("click", function(){
-        let abcd = {"id": information["id"],
-                    "front": "asdfsa",
-                    "back" : "bigboy"};
         $(new_flashcard).insertBefore("#add-flashcard");
         $(".flashcard").last().children().first().focus();
     });

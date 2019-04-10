@@ -4,14 +4,14 @@
     <head>
         <meta charset="utf-8">
         <title>Edit Flashcard</title>
-        <link rel="stylesheet" type="text/css" href="/css/FlashcardsetEdit.css">
+        <link rel="stylesheet" type="text/css" href="/css/SetEdit.css">
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"
                 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
                 crossorigin="anonymous"></script>
         </script>
 
-        <script src="/js/FlashcardsetEdit.js"></script>
+        <script src="/js/SetEdit.js"></script>
     </head>
 
     <body>
@@ -23,12 +23,21 @@
             <h1 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
         </div>
 
-        <div id="flashcardset"><!--To prevent space between inline-blocks.
-        --><div id="add-flashcard"><!--
-            --><textarea  class="flashcard-front" spellcheck="false">+</textarea><!--
-            --><textarea  class="flashcard-back"  spellcheck="false">+</textarea><!--
-        --></div><!--
-     --></div>
+
+        <ul id="flashcard-set">
+            <li class="flashcard">
+                <button type="button" class="delete-flashcard">🗑️</button>
+                <div class="front-flashcard">
+                    <textarea ></textarea>
+                    <p>Front</p>
+                </div>
+                <div class="back-flashcard">
+                    <textarea></textarea>
+                    <p>Back</p>
+                </div>
+            </li>
+            <li id="add-flashcard"><div><p>+ Add Flashcard</p></div></li>
+        </ul>
 
         <button type="button" id="save-button">Save</button>
 
