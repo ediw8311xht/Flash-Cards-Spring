@@ -1,5 +1,6 @@
 package com.flashcardapp.flashcard.controllers;
 
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,16 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 
+import com.flashcardapp.flashcard.repositories.UserRepository;
 import com.flashcardapp.flashcard.repositories.FlashcardRepository;
+import com.flashcardapp.flashcard.ent.User;
 import com.flashcardapp.flashcard.ent.Flashcardset;
 
 @Controller
 @RequestMapping("/flashcard/ajax")
 public class AjaxController {
 
+    private UserRepository userRepo;
     private FlashcardRepository flashcardRepo;
 
-    public AjaxController(FlashcardRepository flashcardRepo) {
+
+    public AjaxController(UserRepository userRepo, FlashcardRepository flashcardRepo) {
+        this.userRepo = userRepo;
         this.flashcardRepo = flashcardRepo;
     }
 
@@ -27,6 +33,22 @@ public class AjaxController {
         Flashcardset fcs = this.flashcardRepo.findOne(id);
         return fcs;
     }
+
+    @RequestMapping(value = "/Flashcardset/copy", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody Flashcardset copyFlashcardset(@RequestParam("id") String id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        User ln_user = this.userRepo.findOne(auth.getName());
+        Flashcardset fcs = this.flashcardRepo.findOne(id);
+
+        Flashcardset copied_set = new Flashcardset(this.flashcardRepo.makeRandomId(), fcs.getName() + " [Copy]", fcs.getFlashcardsStr(), auth.getName());
+        this.flashcardRepo.save(copied_set);
+        ln_user.addFlashset(copied_set.getId());
+        this.userRepo.updateUserDetails(ln_user);
+
+        return copied_set;
+    }
+
 
     @RequestMapping(value = "/Flashcardset/updateCards", method = RequestMethod.POST, produces = "application/json")
     public @ResponseBody Flashcardset updateCardsFlashcardset(@RequestParam("id") String id, @RequestParam("flashcards") String flashcards) {

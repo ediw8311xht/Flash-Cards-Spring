@@ -12,7 +12,7 @@
                 crossorigin="anonymous"></script>
         </script>
 
-        <script src="/js/Flashcardset.js"></script>
+        <script src="/js/Set.js"></script>
     </head>
     <body>
 
@@ -36,7 +36,7 @@
         <div id="flashcard-bottom-bar">
             <div><p>ID:</p><p id="flashcardsetId" th:text="${flashcardset.id}"></p></div>
             <button id="flashcard-previous">🡄</button>
-            <p>COPY</p>
+            <p id="copy-flashcard">COPY</p>
             <button id="flashcard-next">🡆</button>
             <div><p>Name:</p><p id="flashcardsetName" th:text="${flashcardset.name}"></p></div>
         </div>
