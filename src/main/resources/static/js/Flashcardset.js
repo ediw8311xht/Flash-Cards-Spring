@@ -30,7 +30,7 @@ function np_flashcard(event) {
 var information = {"id": ""};
 
 $(document).ready(function(){
-    information["id"] = $("#flashcardsetId").text().substring(4);
+    information["id"] = $("#flashcardsetId").text();
     console.log("INFORMATION: ");
     console.log(information);
 

@@ -86,7 +86,7 @@ body {
 
 #flashcard-bottom-bar {
     font-family: "Oswald";
-    display: flex;
+    text-align: center;
     align-items: center;
     justify-content: center;
     margin-top: 10vh;
@@ -95,9 +95,11 @@ body {
 }
 
 #flashcard-bottom-bar * {
+    display: inline-block;
     margin: 0px;
     color: rgb(213, 40, 40);
     text-shadow: 3px 3px black;
+    vertical-align: middle;
 }
 
 #flashcard-bottom-bar p {
@@ -120,7 +122,12 @@ body {
     cursor: pointer;
 }
 
-#flashcard-bottom-bar h2 {
-    margin-left: 5vw;
-    margin-right: 5vw;
+#flashcard-bottom-bar div {
+    width: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+#flashcard-bottom-bar div p {
+    display: block;
 }

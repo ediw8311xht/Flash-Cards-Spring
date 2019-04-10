@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <title>Flashcards</title>
-        <link rel="stylesheet" type="text/css" href="/css/Flashcardset.css">
+        <link rel="stylesheet" type="text/css" href="/css/Set.css">
 
         <script src="https://code.jquery.com/jquery-3.3.1.js"
                 integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Baloo+Chettan" rel="stylesheet">
 
         <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-        
+
         <div id="flashcard-wrapper">
 
             <div id="flashcard">
@@ -34,11 +34,11 @@
         </div>
 
         <div id="flashcard-bottom-bar">
-            <h2 id="flashcardsetId" th:inline="text">ID: [[${flashcardset.id}]]</h1>
+            <div><p>ID:</p><p id="flashcardsetId" th:text="${flashcardset.id}"></p></div>
             <button id="flashcard-previous">🡄</button>
             <p>COPY</p>
             <button id="flashcard-next">🡆</button>
-            <h2 id="flastcardsetName" th:inline="text">NAME: [[${flashcardset.name}]]</h1>
+            <div><p>Name:</p><p id="flashcardsetName" th:text="${flashcardset.name}"></p></div>
         </div>
 
     </body>
