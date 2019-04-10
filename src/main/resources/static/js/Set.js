@@ -53,5 +53,14 @@ $(document).ready(function(){
         }
     );
 
+    $("#copy-flashcard").one("click", function(event){
+        $.get("/flashcard/ajax/Flashcardset/copy?id=" + information["id"],
+            function(data) {
+                if (data) {
+                    window.alert("Succesfully saved flashcardset.");
+                }
+            }
+        )
+    });
 
 });
