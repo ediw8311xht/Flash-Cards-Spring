@@ -28,6 +28,18 @@ function np_flashcard(event) {
     $("#flashcard-back").css("display", "none");
 }
 
+
+function shuffle_array(arr) {
+
+    for (let i = 0; i < arr.length; i++) {
+        let rindex1 = Math.floor(Math.random() * arr.length);
+        let rindex2 = Math.floor(Math.random() * arr.length);
+        [arr[rindex1], arr[rindex2]] = [arr[rindex2], arr[rindex1]];
+    }
+
+    return arr;
+}
+
 var information = {"id": ""};
 
 $(document).ready(function(){
@@ -45,6 +57,7 @@ $(document).ready(function(){
                 console.log(flset[i]);
                 flset[i] = flset[i].split("\\");
             }
+            flset = shuffle_array(flset);
             $("#flashcard-front").text(flset[flnum % flset.length][0]);
             $("#flashcard-back").text(flset[flnum % flset.length][1]);
             $("#flashcard").on("click", flip_flashcard);
