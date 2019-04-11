@@ -13,17 +13,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepository {
 
-    //Used to encrypt password
+    //Used to encrypt password. Automagically provided by Spring @Autowired
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    //Used for database querying
+    //Used to encrypt password. Automagically provided by Spring @Autowired
     @Autowired
     private JdbcTemplate jdbc;
-
-    public UserRepository(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
-    }
 
     //Returns true on successful save,
     //and false if a User already exists with that username in database.

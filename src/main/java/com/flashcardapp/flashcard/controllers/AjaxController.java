@@ -15,14 +15,17 @@ import com.flashcardapp.flashcard.repositories.FlashcardRepository;
 import com.flashcardapp.flashcard.ent.User;
 import com.flashcardapp.flashcard.ent.Flashcardset;
 
+
+//Controller for ajax requests
 @Controller
 @RequestMapping("/flashcard/ajax")
 public class AjaxController {
 
+    //Repositories to allow querying of user and flashcard repositories.
     private UserRepository userRepo;
     private FlashcardRepository flashcardRepo;
 
-
+    //Arguments get automatically wired into controller by spring.
     public AjaxController(UserRepository userRepo, FlashcardRepository flashcardRepo) {
         this.userRepo = userRepo;
         this.flashcardRepo = flashcardRepo;
@@ -33,6 +36,8 @@ public class AjaxController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         Flashcardset fcs = this.flashcardRepo.findOne(id);
+
+        //Checks to make sure that the flashcardset with that id actually exists.
         if (fcs == null) {
             return "Flashset with that id not found.";
         }
@@ -43,6 +48,8 @@ public class AjaxController {
             User ln_user = this.userRepo.findOne(auth.getName());
             this.flashcardRepo.delete(id);
             ln_user.removeFlashset(id);
+
+            //Saves user into database with updated flashcardset.
             this.userRepo.updateUserDetails(ln_user);
             return "Success";
         }

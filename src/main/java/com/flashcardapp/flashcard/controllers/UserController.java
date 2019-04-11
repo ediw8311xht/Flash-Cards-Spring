@@ -21,19 +21,23 @@ import com.flashcardapp.flashcard.repositories.UserRepository;
 @RequestMapping("/flashcard/User")
 public class UserController {
 
+    //Repositories to allow querying of user and flashcard repositories.
     private UserRepository userRepo;
     private FlashcardRepository flashcardRepo;
 
+    //Arguments get automatically wired into controller by spring.
     public UserController(UserRepository userRepo, FlashcardRepository flashcardRepo) {
         this.userRepo = userRepo;
         this.flashcardRepo = flashcardRepo;
     }
 
+    //-----------------------------------
+    //Profile of a User specified by username
+    //-----------------------------------
     @GetMapping("")
     public String User(@RequestParam("username") String username, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
-        System.out.println("USERNAME " + username);
         User user_n = userRepo.findOne(username);
         if (user_n == null) {
             return "UserNotFound";
@@ -46,6 +50,9 @@ public class UserController {
         }
     }
 
+    //-----------------------------------
+    //Profile of a User currently logged in
+    //-----------------------------------
     @GetMapping("/me")
     public String MyProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

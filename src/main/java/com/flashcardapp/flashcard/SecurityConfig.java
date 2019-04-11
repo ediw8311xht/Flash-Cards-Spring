@@ -1,6 +1,5 @@
 package com.flashcardapp.flashcard;
 
-import com.flashcardapp.flashcard.repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 
+
+//Settings for security of spring application.
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //Autowired in spring allows for beans to be automatically inserted
+    //into objects so that object can access them.
     @Autowired
     private DataSource dataSource;
-
-    @Autowired
-    private UserRepository userRepo;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -29,6 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        //Csrf protection is disabled for now.
+
+        //antmatchers().authenticated means that those urls require user to be
+        //logged for them to access them.
+        //If user is not logged in then Spring redirects them to a login page.
         http
             .csrf().disable()
             .authorizeRequests()
@@ -38,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/flashcard/User/myFlashsets").authenticated()
                 .antMatchers("/flashcard/ajax/Flashcardset/copy").authenticated()
                 .antMatchers("/flashcard/Flashcardset/delete").authenticated()
+                .antMatchers("/flashcard/User/me").authenticated()
                 .antMatchers("/**").permitAll()
                 .and()
                     .formLogin()
@@ -51,6 +58,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        //Gets authentication source from "Users" table in database.
+        //Encrypted using BCrypt.
         auth
             .jdbcAuthentication()
                 .dataSource(dataSource)

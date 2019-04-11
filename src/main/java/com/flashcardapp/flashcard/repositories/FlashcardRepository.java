@@ -12,12 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class FlashcardRepository {
 
+    //Used to encrypt password. Automagically provided by Spring @Autowired
     @Autowired
     private JdbcTemplate jdbc;
-
-    public FlashcardRepository(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
-    }
 
     public String makeRandomId() {
         String new_id = "";

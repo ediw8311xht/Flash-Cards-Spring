@@ -18,21 +18,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("/flashcard")
 public class HomeController {
 
+    //Repositories to allow querying of user and flashcard repositories.
     private UserRepository userRepo;
     private FlashcardRepository flashRepo;
 
+    //Arguments get automatically wired into controller by spring.
     public HomeController(UserRepository userRepo, FlashcardRepository flashRepo) {
         this.userRepo = userRepo;
         this.flashRepo = flashRepo;
     }
 
+    //-----------------------------------
+    //Homepage of the website.
+    //-----------------------------------
     @GetMapping("")
     public String FlashcardsetHome(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
 
         //"featured_set_user" is a user that is specifically made to only store featured flashcardsets.
-        //This user should not create flashcardsets, should only copy sets from other users. 
+        //This user should not create flashcardsets, should only copy sets from other users.
         User feat_user =  userRepo.findOne("featured_set_user");
         if (feat_user == null) {
             System.out.println("Featured user does not exist. You should probably create one.");
