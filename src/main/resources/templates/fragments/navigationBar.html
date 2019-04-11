@@ -10,13 +10,13 @@
             <link rel="stylesheet" text="text/css" href="/flashcard/static/css/navigationBar.css">
 
             <div id="navigation-bar">
-                <img id="nav-logo" src="/flashcard/static/images/logo.png">
+                <a href = "/flashcard">
+                    <img id="nav-logo" src="/flashcard/static/images/logo.png">
+                </a>
                 <a href="/flashcard/makeNewFlashcardset">New Set</a>
-                <span> --- </span>
                 <a href="/flashcard/User/myFlashsets">My Flashsets</a>
-                <span> --- </span>
                 <a th:if="${logged_in}" href="/flashcard/User/me">My Profile</a>
-                <a th:unless="${logged_in}" href="/flashcard/User/login">Log In</a>
+                <span th:unless="${logged_in}" id="lgr-lgr"><a href="/flashcard/User/login">Login</a> / <a href="/flashcard/User/register">Register</a></span>
             </div>
         </div>
 
