@@ -38,7 +38,7 @@ body {
     margin-bottom: 0px;
 }
 
-.flashset-name, .flashset-id, .flashset-flashcards, .flashset-view, .flashset-edit {
+.flashset-name, .flashset-id, .flashset-flashcards, .flashset-view, .flashset-edit, .flashset-delete {
     color: rgb(159,168,221);
     font-family: "Oswald", sans-serif;
     font-size: 25px;
@@ -65,7 +65,7 @@ body {
 .flashset-wrapper:hover .flashset-flip-wrap {
     display: inline-block !important;
     margin: 0px;
-    width: 50%;
+    width: 33%;
     height: 90%;
 }
 

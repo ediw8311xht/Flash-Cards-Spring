@@ -27,6 +27,7 @@ function np_flashcard(event) {
     $("#flashcard-front").css("display", "inline");
     $("#flashcard-back").css("display", "none");
 }
+
 var information = {"id": ""};
 
 $(document).ready(function(){

@@ -34,6 +34,16 @@ public class FlashcardRepository {
         return new_id;
     }
 
+    public boolean delete(String del_id) {
+        if (this.findOne(del_id) == null) {
+            return false;
+        }
+        else {
+            this.jdbc.update("DELETE FROM flashcardset WHERE id = ?", del_id);
+            return true;
+        }
+    }
+
     //Returns Flashcardset on successful save,
     //and null if a Flashcardset already exists with that id in database.
     public Flashcardset save(Flashcardset Flashcardset) {
@@ -43,19 +53,19 @@ public class FlashcardRepository {
             return null;
         }
         else {
-            jdbc.update("INSERT INTO Flashcardset (id, name, flashcards, owner) VALUES (?, ?, ?, ?)",
+            this.jdbc.update("INSERT INTO flashcardset (id, name, flashcards, owner) VALUES (?, ?, ?, ?)",
                         Flashcardset.getId(), Flashcardset.getName(), Flashcardset.getFlashcardsStr(), Flashcardset.getOwner());
             return Flashcardset;
         }
     }
 
     public void updateFlashcardset(Flashcardset Flashcardset) {
-            jdbc.update("UPDATE Flashcardset SET name = ?, flashcards = ? WHERE id = ?", Flashcardset.getName(), Flashcardset.getFlashcardsStr(), Flashcardset.getId());
+            this.jdbc.update("UPDATE flashcardset SET name = ?, flashcards = ? WHERE id = ?", Flashcardset.getName(), Flashcardset.getFlashcardsStr(), Flashcardset.getId());
     }
 
     public Flashcardset findOne(String id) {
         try {
-            return jdbc.queryForObject("SELECT id, name, flashcards, owner FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
+            return this.jdbc.queryForObject("SELECT id, name, flashcards, owner FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
         } catch (EmptyResultDataAccessException e) {
             System.out.println("No result found for that query.");
             return null;

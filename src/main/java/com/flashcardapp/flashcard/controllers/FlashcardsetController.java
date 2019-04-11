@@ -65,8 +65,6 @@ public class FlashcardsetController {
             return "SetNotFound";
         }
         else if (!fcs.getOwner().equals(auth.getName())) {
-            System.out.println(fcs.getOwner());
-            System.out.println(auth.getName());
             return "NotOwner";
         }
         else {

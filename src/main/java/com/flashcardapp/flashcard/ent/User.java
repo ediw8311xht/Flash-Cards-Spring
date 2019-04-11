@@ -46,9 +46,6 @@ public class User {
             return "";
         }
         else if (this.flashsets.size() == 1) {
-            System.out.println("S");
-            System.out.println(this.flashsets);
-            System.out.println("END");
             return this.flashsets.get(0);
         }
         else {
@@ -95,7 +92,7 @@ public class User {
         if (!flsets.equals("")) {
             this.flashsets = new ArrayList<String>(Arrays.asList(flsets.split(",")));
         }
-        
+
     }
 
     public void addFlashset(String flashset) {
@@ -104,6 +101,10 @@ public class User {
 
     public void removeFlashset(int position) {
         this.flashsets.remove(position);
+    }
+
+    public void removeFlashset(String flashset_id) {
+        this.flashsets.remove(flashset_id);
     }
 
 

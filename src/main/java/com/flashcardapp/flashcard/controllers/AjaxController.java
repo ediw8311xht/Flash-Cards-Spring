@@ -28,6 +28,26 @@ public class AjaxController {
         this.flashcardRepo = flashcardRepo;
     }
 
+    @RequestMapping(value = "/Flashcardset/delete", method = RequestMethod.POST, produces = "text/plain")
+    public @ResponseBody String deleteFlashcardset(@RequestParam("id") String id) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        Flashcardset fcs = this.flashcardRepo.findOne(id);
+        if (fcs == null) {
+            return "Flashset with that id not found.";
+        }
+        else if (!fcs.getOwner().equals(auth.getName())) {
+            return "You are not the owner of that flashset.";
+        }
+        else {
+            User ln_user = this.userRepo.findOne(auth.getName());
+            this.flashcardRepo.delete(id);
+            ln_user.removeFlashset(id);
+            this.userRepo.updateUserDetails(ln_user);
+            return "Success";
+        }
+    }
+
     @RequestMapping(value = "/Flashcardset", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody Flashcardset getFlashcardset(@RequestParam("id") String id) {
         Flashcardset fcs = this.flashcardRepo.findOne(id);

@@ -5,7 +5,15 @@
     <head>
         <meta charset="utf-8">
         <title>Flashcards</title>
+
         <link rel="stylesheet" type="text/css" href="/css/MyFlashsets.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+                integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+                crossorigin="anonymous"></script>
+        </script>
+
+        <script src="/js/MySets.js"></script>
     </head>
     <body>
         <div th:replace="fragments/navigationBar :: navigationBar"></div>
@@ -32,7 +40,21 @@
                     <div>
                         <h1 class="flashset-flashcards" th:text="${#lists.size(flashset.flashcards)}"></h1>
                     </div>
-                    <a th:href="@{/flashcard/Flashcardset(id=${flashset.id})}"><div class="flashset-flip-wrap"><h1 class="flashset-view">VIEW</h1></div></a><a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}"><div class="flashset-flip-wrap"><h1 class="flashset-edit">EDIT</h1></div></a>
+                    <a th:href="@{/flashcard/Flashcardset(id=${flashset.id})}">
+                        <div class="flashset-flip-wrap">
+                            <h1 class="flashset-view">VIEW</h1>
+                        </div>
+                    </a>
+                    <a th:href="@{/flashcard/Flashcardset/edit(id=${flashset.id})}">
+                        <div class="flashset-flip-wrap">
+                            <h1 class="flashset-edit">EDIT</h1>
+                        </div>
+                    </a>
+                    <a class="delete-flashset">
+                        <div class="flashset-flip-wrap">
+                            <h1 class="flashset-delete">DELETE</h1>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
