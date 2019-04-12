@@ -3,34 +3,10 @@
 let flnum = 0;
 let flsets = [];
 
+var information = {"id": ""};
 
 function del_flashcard_callback(event) {
     $(event.target).parent().remove();
-}
-
-function insert_flashcard(front, back) {
-    let new_flashcard = '<li class="flashcard">\
-                        <button type="button" class="delete-flashcard">🗑️</button>\
-                        <div class="front-flashcard">\
-                            <textarea >' + front + '</textarea>\
-                            <p>Front</p>\
-                        </div>\
-                        <div class="back-flashcard">\
-                            <textarea>' + back + '</textarea>\
-                            <p>Back</p>\
-                        </div>\
-                    </li>';
-
-    $(new_flashcard).insertBefore("#add-flashcard");
-
-    //Adds event listener to newly created element.
-    $(".delete-flashcard").on("click", del_flashcard_callback);
-}
-
-function update_flashcard_server() {
-    $.post("/flashcard/ajax/Flashcardset/updateCards", {"id": information["id"], "flashcards": get_flashcards_str()},
-           function(data) { console.log(data); });
-    console.log("Done with POST Save");
 }
 
 function get_flashcards_str() {
@@ -48,6 +24,34 @@ function get_flashcards_str() {
     return str;
 }
 
+function update_flashcard_server() {
+    $.post("/flashcard/ajax/Flashcardset/updateCards", {"id": information["id"], "flashcards": get_flashcards_str()},
+           function(data) { console.log(data); });
+    console.log("Done with POST Save");
+}
+
+function insert_flashcard(front, back) {
+    let new_flashcard = '<li class="flashcard">\
+                        <button type="button" class="delete-flashcard">🗑️</button>\
+                        <div class="front-flashcard">\
+                            <textarea >' + front + '</textarea>\
+                            <p>Front</p>\
+                        </div>\
+                        <div class="back-flashcard">\
+                            <textarea>' + back + '</textarea>\
+                            <p>Back</p>\
+                        </div>\
+                    </li>';
+
+    $(new_flashcard).insertBefore("#add-flashcard");
+    $("textarea").change(function(){
+            update_flashcard_server();
+    });
+    //Adds event listener to newly created element.
+    $(".delete-flashcard").on("click", del_flashcard_callback);
+}
+
+
 function write_flashcards(flashcards) {
     $(".flashcard").remove();
     if (flashcards == "") {
@@ -60,7 +64,7 @@ function write_flashcards(flashcards) {
     }
 }
 
-var information = {"id": ""};
+
 
 $(document).ready(function() {
 
