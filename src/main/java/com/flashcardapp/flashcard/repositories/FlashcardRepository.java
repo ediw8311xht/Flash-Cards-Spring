@@ -20,9 +20,10 @@ public class FlashcardRepository {
         String new_id = "";
         String valid_char[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
 
-        System.out.println("HERE");
+        //Creates random id until it finds a random id that does not already exists.
+        //In 99.9999% of cases it will only run once, but on the off chance is generates
+        //a id that already exists in database, this do while statement prevents against that.
         do {
-            System.out.println("nHERE");
             for (int i = 0; i < 15; i++) {
                 new_id += valid_char[(int) Math.floor(Math.random() * valid_char.length)];
             }
@@ -32,6 +33,8 @@ public class FlashcardRepository {
     }
 
     public boolean delete(String del_id) {
+        
+        //Checks if flashcardset with that id exists.
         if (this.findOne(del_id) == null) {
             return false;
         }
@@ -64,7 +67,6 @@ public class FlashcardRepository {
         try {
             return this.jdbc.queryForObject("SELECT id, name, flashcards, owner FROM Flashcardset WHERE id = ?", this::mapRowToFlashcardset, id);
         } catch (EmptyResultDataAccessException e) {
-            System.out.println("No result found for that query.");
             return null;
         }
 
@@ -75,7 +77,6 @@ public class FlashcardRepository {
             return new Flashcardset(rs.getString("id"), rs.getString("name"), rs.getString("flashcards"), rs.getString("owner"));
         }
         else {
-            System.out.println("no results found.");
             return null;
         }
     }

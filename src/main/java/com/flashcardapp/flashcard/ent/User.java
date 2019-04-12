@@ -6,9 +6,13 @@ import java.util.ArrayList;
 
 public class User {
 
+    //Username should be unique since it is the primary key of User.
     private String username;
+
     private String password;
+
     private ArrayList<String> flashsets = new ArrayList<String>();
+    
     private boolean enabled;
 
     //-------------------------------------------------------------------------------------------//

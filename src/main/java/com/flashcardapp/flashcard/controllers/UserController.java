@@ -57,18 +57,18 @@ public class UserController {
     public String MyProfile(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        //Check if logged in. If not, redirects to login page.
-        if (auth == null || !auth.isAuthenticated() || auth instanceof AnonymousAuthenticationToken) {
-            model.addAttribute("logged_in", false);
-            return "redirect:/flashcard/User/login";
-        }
-
+        //Login is already required for this suburl, so logged_in attribute
+        //should always be true.
         model.addAttribute("logged_in", true);
 
         User user_n = userRepo.findOne(auth.getName());
         model.addAttribute("username", user_n.getUsername());
         model.addAttribute("flashsets", user_n.getFlashsets());
+
+        //Uses same template as User template, but passes attribute is_owner = true,
+        //so that tempalte can change.
         model.addAttribute("is_owner", true);
+
         return "User";
 
     }
@@ -78,11 +78,22 @@ public class UserController {
         return "Register";
     }
 
+    //Handles actual registration request from form on register page.
     @PostMapping("/register")
     public ModelAndView PostUserRegister(@RequestParam("username") String username, @RequestParam("password") String password ) {
-        User new_user = new User(username, password);
-        userRepo.save(new_user);
-        return new ModelAndView("redirect:/flashcard/User?username=" + username);
+
+        //Redirects if user with that username already exists.
+        if (userRepo.findOne(username) != null) {
+
+            //Need to modify later to inform user that username is already taken.
+            //Just redirects for now.
+            return new ModelAndView("redirect:/flashcard/User/register");
+        }
+        else {
+            User new_user = new User(username, password);
+            userRepo.save(new_user);
+            return new ModelAndView("redirect:/flashcard/User?username=" + username);
+        }
     }
 
     @GetMapping("/login")
@@ -93,6 +104,7 @@ public class UserController {
     @GetMapping("/myFlashsets")
     public String getFlashcardsetEdit(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         model.addAttribute("logged_in", (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)));
         User ln_user = userRepo.findOne(auth.getName());
         ArrayList<Flashcardset> inftc = new ArrayList<Flashcardset>();

@@ -15,6 +15,7 @@ public class Flashcardset {
     //i.e. "2 + 2\4"
     private ArrayList<String> flashcards = new ArrayList<String>();
 
+    //This is the username of the owner of flashcardset.
     private String owner;
     //-------------------------------------------------------------------------------------------//
     //-----------------------------------------------------------------CONSTRUCTORS--------------//
