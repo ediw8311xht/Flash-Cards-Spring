@@ -1,0 +1,16 @@
+
+
+@font-face {
+    font-family: "Baloo Chettan";
+    src: url("/flashcard/static/fonts/Baloo_Chettan/BalooChettan-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Oswald";
+    src: url("/flashcard/static/fonts/Oswald/Oswald-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Germania One";
+    src: url("/flashcard/static/fonts/GermaniaOne/GermaniaOne-Regular.ttf");
+}
