@@ -10,10 +10,6 @@ function replace_string(origin_str, r_substr, n_substr) {
     return n_str.join(n_substr);
 }
 
-function del_flashcard_callback(event) {
-    $(event.target).parent().remove();
-}
-
 function get_flashcards_str() {
     let str = "";
     $(".flashcard").each(function(index) {
@@ -25,10 +21,16 @@ function get_flashcards_str() {
     return str;
 }
 
+
 function update_flashcard_server() {
     $.post("/flashcard/ajax/Flashcardset/updateCards", {"id": information["id"], "flashcards": get_flashcards_str()},
            function(data) { console.log(data); });
     console.log("Done with POST Save");
+}
+
+function del_flashcard_callback(event) {
+    $(event.target).parent().remove();
+    update_flashcard_server();
 }
 
 function insert_flashcard(front, back) {
