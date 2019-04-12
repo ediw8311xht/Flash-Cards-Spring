@@ -86,13 +86,9 @@ $(document).ready(function() {
 
     $("#add-flashcard").on("click", function(event){
         insert_flashcard("", "");
+        update_flashcard_server();
     });
 
     $(".delete-flashcard").on("click", del_flashcard_callback);
 
-    $("#save-button").on("click", function() {
-        $.post("/flashcard/ajax/Flashcardset/updateCards", {"id": information["id"], "flashcards": get_flashcards_str()},
-               function(data) { console.log(data); });
-        console.log("Done with POST Save");
-    });
 });
