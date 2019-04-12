@@ -2,6 +2,11 @@
 var flnum = 0;
 var flset = [];
 
+function replace_string(origin_str, r_substr, n_substr) {
+    let n_str = origin_str.split(r_substr);
+    return n_str.join(n_substr);
+}
+
 function flip_flashcard(event) {
     if ($("#flashcard-back").css("display") == "none") {
         $("#flashcard-front").css("display", "none");
@@ -53,9 +58,7 @@ $(document).ready(function(){
             console.log(data["flashcardsStr"]);
             flset = data["flashcardsStr"].split(",");
             for (let i = 0; i < flset.length; i++) {
-                console.log(flset[i].split("\\"));
-                console.log(flset[i]);
-                flset[i] = flset[i].split("\\");
+                flset[i] = replace_string(flset[i], ".~.", ",").split("\\");
             }
             flset = shuffle_array(flset);
             $("#flashcard-front").text(flset[flnum % flset.length][0]);

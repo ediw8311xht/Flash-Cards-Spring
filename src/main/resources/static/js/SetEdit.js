@@ -5,22 +5,23 @@ let flsets = [];
 
 var information = {"id": ""};
 
+function replace_string(origin_str, r_substr, n_substr) {
+    let n_str = origin_str.split(r_substr);
+    return n_str.join(n_substr);
+}
+
 function del_flashcard_callback(event) {
     $(event.target).parent().remove();
 }
 
 function get_flashcards_str() {
     let str = "";
-    console.log("getflashcardsstr");
     $(".flashcard").each(function(index) {
         if (str != "") { str += ","; }
-        console.log($($($(this).children()[1]).children()[0]).val());
-        console.log($($(this).children()[2]).val());
-        str += $($($(this).children()[1]).children()[0]).val();
+        str += replace_string($($($(this).children()[1]).children()[0]).val(), ",", ".~.");
         str += "\\";
-        str += $($($(this).children()[2]).children()[0]).val();
+        str += replace_string($($($(this).children()[2]).children()[0]).val(), ",", ".~.");
     });
-    console.log("endflashcardsstr");
     return str;
 }
 
@@ -59,7 +60,7 @@ function write_flashcards(flashcards) {
     }
     let fbc = flashcards.split(",");
     for (let i = 0; i < fbc.length; i++) {
-        let c = fbc[i].split("\\");
+        let c = replace_string(fbc[i], ".~.", ",").split("\\");
         insert_flashcard(c[0], c[1]);
     }
 }
