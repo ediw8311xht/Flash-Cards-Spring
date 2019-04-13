@@ -14,6 +14,8 @@ function get_flashcards_str() {
     let str = "";
     $(".flashcard").each(function(index) {
         if (str != "") { str += ","; }
+        console.log(this);
+        console.log("in each");
         str += replace_string($($($(this).children()[1]).children()[0]).val(), ",", ".~.");
         str += "\\";
         str += replace_string($($($(this).children()[2]).children()[0]).val(), ",", ".~.");
@@ -51,6 +53,7 @@ function insert_flashcard(front, back) {
             update_flashcard_server();
     });
     //Adds event listener to newly created element.
+    $(".delete-flashcard").off();
     $(".delete-flashcard").on("click", del_flashcard_callback);
 }
 
@@ -77,12 +80,6 @@ $(document).ready(function() {
 
     $.get("/flashcard/ajax/Flashcardset?id=" + information["id"],
         function(data) {
-            console.log("SUCCESSFUL");
-            console.log("data: ");
-            console.log(data);
-            console.log("flashcards");
-            console.log(data["flashcards"]);
-            console.log("END");
             write_flashcards(data["flashcardsStr"]);
         }
     );

@@ -101,6 +101,9 @@ public class Flashcardset {
             //Stupid convoluted line mess is because split returns Array and needs to be ArrayList.
             this.flashcards = new ArrayList<String>(Arrays.asList(flashset.split(",")));
         }
+        else {
+            this.flashcards = new ArrayList<String>();
+        }
 
     }
 

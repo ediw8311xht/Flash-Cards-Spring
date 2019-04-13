@@ -61,6 +61,7 @@ $(document).ready(function(){
                 flset[i] = replace_string(flset[i], ".~.", ",").split("\\");
             }
             flset = shuffle_array(flset);
+            console.log(flset);
             $("#flashcard-front").text(flset[flnum % flset.length][0]);
             $("#flashcard-back").text(flset[flnum % flset.length][1]);
             $("#flashcard").on("click", flip_flashcard);
