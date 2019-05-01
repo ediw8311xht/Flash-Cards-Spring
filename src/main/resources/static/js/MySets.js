@@ -13,8 +13,7 @@ $(document).ready(function(){
                             del_par_el.remove();
                         }
                      }, "text");
-
-        });
-    }
+        }
+    });
 
 });
