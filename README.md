@@ -2,13 +2,13 @@
 
 Flash card website in Spring MVC/Boot. Allows users to create and share flashcard sets.
 
-![Sample Image 1](Sample/preview1.png)
-
 ## About
 
 My final project for 2nd semester of AP Computer Science class.
 
-Built in Spring Boot and Spring MVC. JDBC for querying of database, Postgresql database, authentication and security using Spring Security, jquery for post/ get requests and element manipulation. Hosted on my home web server running Ubuntu Server 18.04 and Nginx. 
+Built in Spring Boot and Spring MVC. JDBC for querying of database, Postgresql database, authentication and security using Spring Security, jquery for post/ get requests and element manipulation.
+
+<img src="Sample/preview1.png" alt="Flash card preview image 1" style="width: 400px;">
 
 ### Creating Database
 
