@@ -37,7 +37,7 @@ function del_flashcard_callback(event) {
 
 function insert_flashcard(front, back) {
     let new_flashcard = '<li class="flashcard">\
-                        <button type="button" class="delete-flashcard">🗑️</button>\
+                        <button type="button" class="delete-flashcard">&#10006;</button>\
                         <div class="front-flashcard">\
                             <textarea >' + front + '</textarea>\
                             <p>Front</p>\

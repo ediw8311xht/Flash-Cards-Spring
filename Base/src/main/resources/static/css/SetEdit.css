@@ -35,7 +35,7 @@ body {
 
 .front-flashcard textarea, .back-flashcard textarea{
     border-bottom: 2px solid black;
-    cols: "1";
+    /*cols: "1";*/
     resize: none;
     width: 300px;
     height: 50px;
