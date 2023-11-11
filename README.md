@@ -2,9 +2,6 @@
 
 Flash card website in Spring MVC/Boot. Allows users to create and share flashcard sets.
 
-## Build
-
-
 ### Creating Database
 
 Define environment variables `$DB_NAME`, `$DB_USERNAME`, and `$DB_SCHEMA_FILE` then run `init_db.sh` to initilize database and tables.
@@ -16,6 +13,10 @@ OR you can pass name of database, username of database owner as arguments (LESS 
 
 `application.properties` uses environment variables `$DB_NAME`, `$DB_USERNAME`, and `$DB_PASSWORD` so you must set those variables before building with maven
 or of course you can just edit the `application.properties` as well (LESS OPTIMAL).
+
+### URLs
+
+/flashcards/ is the URL of this project
 
 ## About
 

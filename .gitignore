@@ -1,5 +1,7 @@
 
 target/
+mvnw
+mvnw.cmd
 .mvn
 .apt_generated
 .classpath
