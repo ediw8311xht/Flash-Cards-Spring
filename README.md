@@ -8,7 +8,9 @@ My final project for 2nd semester of AP Computer Science class.
 
 Built in Spring Boot and Spring MVC. JDBC for querying of database, Postgresql database, authentication and security using Spring Security, jquery for post/ get requests and element manipulation.
 
-<img src="Sample/preview1.png" alt="Flash card preview image 1" style="width: 400px;">
+<img src="Sample/preview1.png" alt="Flash card preview image 1" style="height: 200px;">&nbsp;&nbsp;&nbsp;&nbsp;<img src="Sample/preview2.png" alt="Flash card preview image 2" style="height: 200px;">
+
+<img src="Sample/preview3.png" alt="Flash card preview image 3" style="height: 200px;">
 
 ### Creating Database
 
