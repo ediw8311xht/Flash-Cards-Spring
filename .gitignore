@@ -1,6 +1,4 @@
 
-*.properties
-*.sh
 target/
 .mvn
 .apt_generated
