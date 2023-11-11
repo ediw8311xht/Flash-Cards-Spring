@@ -16,7 +16,7 @@ or of course you can just edit the `application.properties` as well (LESS OPTIMA
 
 ### URLs
 
-/flashcards/ is the URL of this project
+/flashcards/ is the SUB-URL of project, obviously can be adjusted.
 
 ## About
 
