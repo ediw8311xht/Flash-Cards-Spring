@@ -18,6 +18,8 @@ or of course you can just edit the `application.properties` as well (LESS OPTIMA
 
 /flashcards/ is the SUB-URL of project, obviously can be adjusted.
 
+![Sample Image 1](Sample/preview1.png)
+
 ## About
 
 My final project for 2nd semester of AP Computer Science class.
